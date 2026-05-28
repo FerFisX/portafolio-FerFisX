@@ -135,8 +135,8 @@ class ApiStack(Stack):
             memory_size=512,
             environment={
                 **common_env,
-                "FROM_EMAIL": "noreply@adrian.ai",
-                "TO_EMAIL": "adrian@example.com",
+                "FROM_EMAIL": "arviziosoft@gmail.com",
+                "TO_EMAIL": "arviziosoft@gmail.com",
             },
             log_retention=logs.RetentionDays.ONE_MONTH,
         )
