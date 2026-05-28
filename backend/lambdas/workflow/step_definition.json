@@ -1,0 +1,135 @@
+{
+  "Comment": "Demo workflow estilo n8n / Make — extracción + validación + notificación con LLM en el medio. Reemplaza '${...}' por los ARN reales (CDK los inyecta).",
+  "StartAt": "ValidateInput",
+  "States": {
+    "ValidateInput": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.payload",
+          "IsPresent": true,
+          "Next": "ExtractWithLLM"
+        }
+      ],
+      "Default": "InvalidInput"
+    },
+    "ExtractWithLLM": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "${EXTRACT_LAMBDA_ARN}",
+        "Payload.$": "$"
+      },
+      "ResultPath": "$.extracted",
+      "Retry": [
+        {
+          "ErrorEquals": ["States.TaskFailed"],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2.0
+        }
+      ],
+      "Catch": [
+        {
+          "ErrorEquals": ["States.ALL"],
+          "ResultPath": "$.error",
+          "Next": "NotifyFailure"
+        }
+      ],
+      "Next": "ValidateExtraction"
+    },
+    "ValidateExtraction": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.extracted.Payload.confidence",
+          "NumericGreaterThanEquals": 0.7,
+          "Next": "RouteByCategory"
+        }
+      ],
+      "Default": "HumanReview"
+    },
+    "RouteByCategory": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.extracted.Payload.category",
+          "StringEquals": "ops",
+          "Next": "NotifyOpsSlack"
+        },
+        {
+          "Variable": "$.extracted.Payload.category",
+          "StringEquals": "compliance",
+          "Next": "NotifyComplianceSlack"
+        }
+      ],
+      "Default": "NotifyGeneralSlack"
+    },
+    "NotifyOpsSlack": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "${SLACK_LAMBDA_ARN}",
+        "Payload": {
+          "channel": "#ops",
+          "data.$": "$.extracted.Payload"
+        }
+      },
+      "End": true
+    },
+    "NotifyComplianceSlack": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "${SLACK_LAMBDA_ARN}",
+        "Payload": {
+          "channel": "#compliance-alerts",
+          "data.$": "$.extracted.Payload"
+        }
+      },
+      "End": true
+    },
+    "NotifyGeneralSlack": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "${SLACK_LAMBDA_ARN}",
+        "Payload": {
+          "channel": "#general",
+          "data.$": "$.extracted.Payload"
+        }
+      },
+      "End": true
+    },
+    "HumanReview": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "${SLACK_LAMBDA_ARN}",
+        "Payload": {
+          "channel": "#ai-review-queue",
+          "data.$": "$.extracted.Payload",
+          "reason": "low_confidence"
+        }
+      },
+      "End": true
+    },
+    "NotifyFailure": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "${SLACK_LAMBDA_ARN}",
+        "Payload": {
+          "channel": "#ai-errors",
+          "error.$": "$.error"
+        }
+      },
+      "End": true
+    },
+    "InvalidInput": {
+      "Type": "Fail",
+      "Error": "InvalidInput",
+      "Cause": "Payload missing required fields"
+    }
+  }
+}

@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adrian - AI Engineer especializado en LLMs, RAG, Agentes y arquitecturas serverless en AWS. Construyo IA que vive en producción.">
+    <meta name="keywords" content="AI Engineer, LLM, RAG, AWS Bedrock, Claude, OpenAI, Fintech, Stablecoins, Python, Agentes IA">
+    <meta property="og:title" content="Adrian | AI Engineer">
+    <meta property="og:description" content="Portafolio interactivo construido con AWS Bedrock, Lambda, RAG y agentes con tool use.">
+    <meta property="og:type" content="website">
+    <title>Adrian | AI Engineer — LLMs, RAG & Agentes en producción</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/chat.css">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+</head>
+<body>
+    <!-- Animated grid background -->
+    <div class="bg-grid"></div>
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <span class="logo-bracket">[</span>adrian<span class="logo-dot">.</span>ai<span class="logo-bracket">]</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">Sobre mí</a></li>
+                <li><a href="#stack">Stack</a></li>
+                <li><a href="#projects">Demos en vivo</a></li>
+                <li><a href="#architecture">Arquitectura</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+            <button class="cta-button" id="open-chat-nav">
+                <span class="pulse-dot"></span>
+                Hablar con mi AI
+            </button>
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                Disponible para AI Engineer · LATAM / Remote
+            </div>
+            <h1 class="hero-title">
+                Construyo <span class="gradient-text">infraestructura de IA</span><br>
+                que mueve <span class="gradient-text-2">negocios reales</span>.
+            </h1>
+            <p class="hero-subtitle">
+                AI Engineer enfocado en <strong>LLMs en producción</strong>, <strong>RAG</strong>,
+                <strong>agentes con tool use</strong> y automatizaciones serverless sobre AWS.
+                Este mismo portafolio corre sobre Bedrock, Lambda y S3 + numpy (vectores) —
+                <a href="#architecture" class="inline-link">míralo por dentro</a>.
+            </p>
+            <div class="hero-actions">
+                <button class="btn-primary" id="open-chat-hero">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    </svg>
+                    Probar el agente
+                </button>
+                <a href="#projects" class="btn-secondary">
+                    Ver demos en vivo
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Live stats / typing terminal -->
+            <div class="hero-terminal">
+                <div class="terminal-header">
+                    <span class="terminal-dot red"></span>
+                    <span class="terminal-dot yellow"></span>
+                    <span class="terminal-dot green"></span>
+                    <span class="terminal-title">~/portafolio · bash</span>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-line"><span class="terminal-prompt">$</span> <span id="typed-text"></span><span class="cursor">▊</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating tech orbit -->
+        <div class="tech-orbit" aria-hidden="true">
+            <div class="orbit-center">
+                <svg viewBox="0 0 100 100" width="80" height="80">
+                    <defs>
+                        <linearGradient id="brain-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#00d4ff"/>
+                            <stop offset="100%" stop-color="#a855f7"/>
+                        </linearGradient>
+                    </defs>
+                    <circle cx="50" cy="50" r="35" fill="none" stroke="url(#brain-grad)" stroke-width="2"/>
+                    <circle cx="50" cy="50" r="6" fill="url(#brain-grad)"/>
+                    <circle cx="20" cy="50" r="4" fill="#00d4ff"/>
+                    <circle cx="80" cy="50" r="4" fill="#a855f7"/>
+                    <circle cx="50" cy="20" r="4" fill="#00d4ff"/>
+                    <circle cx="50" cy="80" r="4" fill="#a855f7"/>
+                    <line x1="50" y1="50" x2="20" y2="50" stroke="url(#brain-grad)" stroke-width="1.5"/>
+                    <line x1="50" y1="50" x2="80" y2="50" stroke="url(#brain-grad)" stroke-width="1.5"/>
+                    <line x1="50" y1="50" x2="50" y2="20" stroke="url(#brain-grad)" stroke-width="1.5"/>
+                    <line x1="50" y1="50" x2="50" y2="80" stroke="url(#brain-grad)" stroke-width="1.5"/>
+                </svg>
+            </div>
+            <div class="orbit-ring orbit-1">
+                <div class="orbit-item" data-tech="Claude">C</div>
+                <div class="orbit-item" data-tech="GPT-4">G</div>
+                <div class="orbit-item" data-tech="Gemini">★</div>
+            </div>
+            <div class="orbit-ring orbit-2">
+                <div class="orbit-item alt" data-tech="AWS">λ</div>
+                <div class="orbit-item alt" data-tech="Bedrock">B</div>
+                <div class="orbit-item alt" data-tech="Python">py</div>
+                <div class="orbit-item alt" data-tech="RAG">R</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">01 / sobre mí</span>
+                <h2>Construyo lo que otros prototipan.</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p class="lead">
+                        Soy ingeniero enfocado en llevar IA de demo a producción.
+                        Me obsesiona la pregunta: <em>"¿cómo logramos que esto se use de verdad,
+                        sea barato de operar y no rompa cuando crezca?"</em>
+                    </p>
+                    <p>
+                        Trabajo en el cruce entre <strong>LLMs</strong>, <strong>arquitectura serverless</strong>
+                        y <strong>producto</strong>. Detecto procesos manuales, propongo soluciones con IA,
+                        y las llevo hasta adopción real — no me detengo en el notebook.
+                    </p>
+                    <p>
+                        En este portafolio podés ver mi forma de pensar: cada demo está corriendo
+                        sobre AWS, con prompts versionados, observabilidad, caché y ruteo multimodelo.
+                        Nada de smoke and mirrors.
+                    </p>
+                    <div class="about-quote">
+                        <span class="quote-mark">"</span>
+                        La IA no es un feature: es infraestructura. Y la infraestructura
+                        se diseña para durar.
+                    </div>
+                </div>
+                <div class="about-card">
+                    <div class="card-header">
+                        <span class="card-label">// snapshot</span>
+                    </div>
+                    <ul class="snapshot-list">
+                        <li><span class="snap-key">role</span><span class="snap-val">AI Engineer</span></li>
+                        <li><span class="snap-key">focus</span><span class="snap-val">LLMs · RAG · Agents</span></li>
+                        <li><span class="snap-key">cloud</span><span class="snap-val">AWS (Bedrock, Lambda)</span></li>
+                        <li><span class="snap-key">langs</span><span class="snap-val">Python · TypeScript</span></li>
+                        <li><span class="snap-key">interés</span><span class="snap-val">Fintech · Stablecoins</span></li>
+                        <li><span class="snap-key">modo</span><span class="snap-val">Ownership total</span></li>
+                        <li><span class="snap-key">status</span><span class="snap-val status-active">● activo</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stack -->
+    <section class="section section-alt" id="stack">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">02 / stack</span>
+                <h2>El toolkit con el que ataco problemas.</h2>
+                <p class="section-sub">No es la lista de todo lo que toqué, son las herramientas con las que ya envié features a producción.</p>
+            </div>
+            <div class="stack-grid">
+                <div class="stack-card">
+                    <div class="stack-icon" data-color="blue">
+                        <svg viewBox="0 0 24 24" fill="none" width="28" height="28"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" stroke="currentColor" stroke-width="1.8"/><path d="M2 7l10 5 10-5M12 22V12" stroke="currentColor" stroke-width="1.8"/></svg>
+                    </div>
+                    <h3>LLMs & Providers</h3>
+                    <ul>
+                        <li><span class="pill">Claude (Anthropic)</span></li>
+                        <li><span class="pill">OpenAI GPT-4 / 4o</span></li>
+                        <li><span class="pill">Gemini</span></li>
+                        <li><span class="pill">AWS Bedrock</span></li>
+                        <li><span class="pill">Llama / Mistral</span></li>
+                    </ul>
+                </div>
+                <div class="stack-card">
+                    <div class="stack-icon" data-color="purple">
+                        <svg viewBox="0 0 24 24" fill="none" width="28" height="28"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/><path d="M12 1v6m0 10v6M4.22 4.22l4.24 4.24m7.08 7.08l4.24 4.24M1 12h6m10 0h6M4.22 19.78l4.24-4.24m7.08-7.08l4.24-4.24" stroke="currentColor" stroke-width="1.8"/></svg>
+                    </div>
+                    <h3>Agentes & RAG</h3>
+                    <ul>
+                        <li><span class="pill">Tool use / function calling</span></li>
+                        <li><span class="pill">Bedrock Agents</span></li>
+                        <li><span class="pill">S3 + numpy (vectores)</span></li>
+                        <li><span class="pill">pgvector</span></li>
+                        <li><span class="pill">Knowledge Bases</span></li>
+                    </ul>
+                </div>
+                <div class="stack-card">
+                    <div class="stack-icon" data-color="cyan">
+                        <svg viewBox="0 0 24 24" fill="none" width="28" height="28"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" stroke="currentColor" stroke-width="1.8"/><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12" stroke="currentColor" stroke-width="1.8"/></svg>
+                    </div>
+                    <h3>AWS Cloud</h3>
+                    <ul>
+                        <li><span class="pill">Lambda · API Gateway</span></li>
+                        <li><span class="pill">Bedrock · S3 vector store</span></li>
+                        <li><span class="pill">DynamoDB · S3</span></li>
+                        <li><span class="pill">Step Functions · EventBridge</span></li>
+                        <li><span class="pill">CDK (IaC)</span></li>
+                    </ul>
+                </div>
+                <div class="stack-card">
+                    <div class="stack-icon" data-color="green">
+                        <svg viewBox="0 0 24 24" fill="none" width="28" height="28"><polyline points="16 18 22 12 16 6" stroke="currentColor" stroke-width="1.8"/><polyline points="8 6 2 12 8 18" stroke="currentColor" stroke-width="1.8"/></svg>
+                    </div>
+                    <h3>Lenguajes & Frameworks</h3>
+                    <ul>
+                        <li><span class="pill">Python (async, FastAPI)</span></li>
+                        <li><span class="pill">TypeScript / Node</span></li>
+                        <li><span class="pill">LangChain / LangGraph</span></li>
+                        <li><span class="pill">Pydantic · SQLAlchemy</span></li>
+                        <li><span class="pill">Pytest</span></li>
+                    </ul>
+                </div>
+                <div class="stack-card">
+                    <div class="stack-icon" data-color="orange">
+                        <svg viewBox="0 0 24 24" fill="none" width="28" height="28"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" stroke="currentColor" stroke-width="1.8"/><polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" stroke-width="1.8"/></svg>
+                    </div>
+                    <h3>No-code / Automation</h3>
+                    <ul>
+                        <li><span class="pill">n8n</span></li>
+                        <li><span class="pill">Make (Integromat)</span></li>
+                        <li><span class="pill">Zapier</span></li>
+                        <li><span class="pill">Slack / Discord bots</span></li>
+                        <li><span class="pill">WhatsApp Business API</span></li>
+                    </ul>
+                </div>
+                <div class="stack-card">
+                    <div class="stack-icon" data-color="pink">
+                        <svg viewBox="0 0 24 24" fill="none" width="28" height="28"><path d="M12 1l3.09 6.26L22 8.27l-5 4.87 1.18 6.88L12 16.77l-6.18 3.25L7 13.14 2 8.27l6.91-1.01L12 1z" stroke="currentColor" stroke-width="1.8"/></svg>
+                    </div>
+                    <h3>Producto & Métricas</h3>
+                    <ul>
+                        <li><span class="pill">Prompt engineering</span></li>
+                        <li><span class="pill">Eval frameworks</span></li>
+                        <li><span class="pill">A/B testing de prompts</span></li>
+                        <li><span class="pill">Cost & latency tracking</span></li>
+                        <li><span class="pill">User adoption metrics</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects / Live demos -->
+    <section class="section" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">03 / demos en vivo</span>
+                <h2>No te lo cuento. <span class="gradient-text">Probálo.</span></h2>
+                <p class="section-sub">Cada demo corre sobre AWS Bedrock + Lambda. Pinchá y experimentá.</p>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Demo 1: AI Agent -->
+                <article class="project-card featured">
+                    <div class="project-header">
+                        <span class="project-status"><span class="status-dot"></span> LIVE</span>
+                        <span class="project-cost">~$0.003 / request</span>
+                    </div>
+                    <h3>Agente conversacional con tool use</h3>
+                    <p class="project-desc">
+                        Un agente que sabe sobre mí, sobre stablecoins y sobre cómo se construyen
+                        productos de IA. Usa Claude vía Bedrock, RAG sobre un vector store custom (numpy en S3) y
+                        function calling para responder con datos vivos.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Bedrock</span>
+                        <span class="tech-tag">Claude 3.5</span>
+                        <span class="tech-tag">RAG</span>
+                        <span class="tech-tag">Tool use</span>
+                        <span class="tech-tag">Lambda</span>
+                    </div>
+                    <button class="project-cta" id="open-chat-card">
+                        Conversar con el agente →
+                    </button>
+                    <div class="project-mockup">
+                        <div class="mock-msg user">¿Por qué Adrian para Meru?</div>
+                        <div class="mock-msg bot">
+                            <span class="mock-thinking">▎ recuperando contexto...</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Demo 2: RAG -->
+                <article class="project-card">
+                    <div class="project-header">
+                        <span class="project-status"><span class="status-dot"></span> LIVE</span>
+                        <span class="project-cost">~$0.001 / query</span>
+                    </div>
+                    <h3>RAG sobre docs de stablecoins</h3>
+                    <p class="project-desc">
+                        Hice ingesta de papers y docs de USDC, USDT, DAI y regulación.
+                        Preguntale lo que quieras sobre stablecoins y mirá las citaciones.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">S3 + numpy</span>
+                        <span class="tech-tag">Titan Embeddings</span>
+                        <span class="tech-tag">Citations</span>
+                    </div>
+                    <button class="project-cta" data-demo="rag">
+                        Probar RAG →
+                    </button>
+                </article>
+
+                <!-- Demo 3: Multi-LLM -->
+                <article class="project-card">
+                    <div class="project-header">
+                        <span class="project-status"><span class="status-dot"></span> LIVE</span>
+                        <span class="project-cost">router optimiza costo</span>
+                    </div>
+                    <h3>Router multimodelo</h3>
+                    <p class="project-desc">
+                        Una request, tres modelos (Claude, GPT, Llama). Router decide por costo,
+                        latencia y complejidad. Comparativa lado a lado.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Multi-provider</span>
+                        <span class="tech-tag">Cost routing</span>
+                        <span class="tech-tag">Streaming</span>
+                    </div>
+                    <button class="project-cta" data-demo="router">
+                        Comparar modelos →
+                    </button>
+                </article>
+
+                <!-- Demo 4: Workflow -->
+                <article class="project-card">
+                    <div class="project-header">
+                        <span class="project-status"><span class="status-dot"></span> LIVE</span>
+                        <span class="project-cost">event-driven</span>
+                    </div>
+                    <h3>Automatización tipo n8n / Make</h3>
+                    <p class="project-desc">
+                        Workflow visual con Step Functions: webhook → extracción con LLM →
+                        validación → notificación a Slack. El JSON de definición es exportable.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Step Functions</span>
+                        <span class="tech-tag">EventBridge</span>
+                        <span class="tech-tag">Webhooks</span>
+                    </div>
+                    <button class="project-cta" data-demo="workflow">
+                        Ver workflow →
+                    </button>
+                </article>
+
+                <!-- Demo 5: Prompt eval -->
+                <article class="project-card">
+                    <div class="project-header">
+                        <span class="project-status"><span class="status-dot"></span> LIVE</span>
+                        <span class="project-cost">testing-first</span>
+                    </div>
+                    <h3>Eval framework de prompts</h3>
+                    <p class="project-desc">
+                        Casos dorados versionados, scoring automático (LLM-as-judge) y diffs
+                        entre versiones de prompt. Sin esto, "prompt engineering" es vibes.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Pytest</span>
+                        <span class="tech-tag">LLM-as-judge</span>
+                        <span class="tech-tag">CI/CD</span>
+                    </div>
+                    <button class="project-cta" data-demo="eval">
+                        Ver evaluaciones →
+                    </button>
+                </article>
+
+                <!-- Demo 6: Fintech focused -->
+                <article class="project-card highlight-meru">
+                    <div class="project-header">
+                        <span class="project-status meru"><span class="status-dot"></span> PARA MERU</span>
+                        <span class="project-cost">caso concreto</span>
+                    </div>
+                    <h3>Bot interno de operaciones fintech</h3>
+                    <p class="project-desc">
+                        Mock-up de cómo construiría un bot interno para operaciones de
+                        stablecoins: KYC checks, conciliación de tx on-chain, alertas
+                        de compliance. <strong>Diseñado pensando en Meru.</strong>
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Stablecoins</span>
+                        <span class="tech-tag">Compliance</span>
+                        <span class="tech-tag">Slack bot</span>
+                    </div>
+                    <button class="project-cta" data-demo="meru">
+                        Ver propuesta →
+                    </button>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture -->
+    <section class="section section-alt" id="architecture">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">04 / arquitectura</span>
+                <h2>El portafolio <span class="gradient-text">por dentro.</span></h2>
+                <p class="section-sub">Todo lo que ves corre sobre estos servicios. IaC con CDK · región us-east-1.</p>
+            </div>
+
+            <div class="architecture-wrapper">
+                <object data="assets/architecture.svg" type="image/svg+xml" class="arch-svg" aria-label="Diagrama de arquitectura AWS"></object>
+
+                <div class="arch-stack">
+                    <div class="arch-layer">
+                        <span class="arch-layer-label">EDGE</span>
+                        <div class="arch-services">
+                            <span class="arch-service">CloudFront</span>
+                            <span class="arch-service">Route 53</span>
+                            <span class="arch-service">WAF</span>
+                        </div>
+                    </div>
+                    <div class="arch-layer">
+                        <span class="arch-layer-label">FRONTEND</span>
+                        <div class="arch-services">
+                            <span class="arch-service">S3 (static)</span>
+                            <span class="arch-service">HTML / CSS / JS</span>
+                        </div>
+                    </div>
+                    <div class="arch-layer">
+                        <span class="arch-layer-label">API</span>
+                        <div class="arch-services">
+                            <span class="arch-service">API Gateway (HTTP)</span>
+                            <span class="arch-service">Lambda (Python 3.12)</span>
+                            <span class="arch-service">Lambda Powertools</span>
+                        </div>
+                    </div>
+                    <div class="arch-layer">
+                        <span class="arch-layer-label">AI / ML</span>
+                        <div class="arch-services">
+                            <span class="arch-service">Bedrock (Claude 3.5)</span>
+                            <span class="arch-service">Titan Embeddings</span>
+                            <span class="arch-service">Bedrock Agents</span>
+                        </div>
+                    </div>
+                    <div class="arch-layer">
+                        <span class="arch-layer-label">DATA</span>
+                        <div class="arch-services">
+                            <span class="arch-service">S3 + numpy (vectores)</span>
+                            <span class="arch-service">DynamoDB (sessions)</span>
+                            <span class="arch-service">S3 (KB docs)</span>
+                        </div>
+                    </div>
+                    <div class="arch-layer">
+                        <span class="arch-layer-label">ORCHESTRATION</span>
+                        <div class="arch-services">
+                            <span class="arch-service">Step Functions</span>
+                            <span class="arch-service">EventBridge</span>
+                            <span class="arch-service">SQS / SNS</span>
+                        </div>
+                    </div>
+                    <div class="arch-layer">
+                        <span class="arch-layer-label">OBSERVABILITY</span>
+                        <div class="arch-services">
+                            <span class="arch-service">CloudWatch Logs</span>
+                            <span class="arch-service">X-Ray traces</span>
+                            <span class="arch-service">Custom metrics</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="arch-decisions">
+                <h3>Decisiones de diseño que me importan</h3>
+                <div class="decision-grid">
+                    <div class="decision">
+                        <span class="decision-num">01</span>
+                        <h4>Serverless por defecto</h4>
+                        <p>Cero servidores que mantener. Escala a cero, paga por uso. Crítico para una startup que no quiere sangrar $$ en infra ociosa.</p>
+                    </div>
+                    <div class="decision">
+                        <span class="decision-num">02</span>
+                        <h4>Multi-modelo desde el día 1</h4>
+                        <p>Abstracción del provider en una capa. Cambiar de Claude a GPT-4o por costo o disponibilidad es una línea de config, no un refactor.</p>
+                    </div>
+                    <div class="decision">
+                        <span class="decision-num">03</span>
+                        <h4>Prompt caching agresivo</h4>
+                        <p>El system prompt se cachea con Bedrock prompt caching. Reduce latencia hasta 80% y costo hasta 90% en conversaciones largas.</p>
+                    </div>
+                    <div class="decision">
+                        <span class="decision-num">04</span>
+                        <h4>IaC con CDK</h4>
+                        <p>Todo en código Python. Reproducible, revisable en PRs, y permite spinear staging environments en minutos.</p>
+                    </div>
+                    <div class="decision">
+                        <span class="decision-num">05</span>
+                        <h4>Observabilidad de IA, no solo de infra</h4>
+                        <p>Trackeo tokens, latencia, costo y calidad por prompt-version. Sin esto no podés iterar con confianza.</p>
+                    </div>
+                    <div class="decision">
+                        <span class="decision-num">06</span>
+                        <h4>Evals como tests</h4>
+                        <p>Cambiás el prompt? Corre la suite de evals en CI. Si baja el score, no mergea. Igual que cualquier feature serio.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meru pitch -->
+    <section class="section meru-pitch" id="meru">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">05 / por qué meru</span>
+                <h2>Por qué te aplico, y qué construiría en los primeros 90 días.</h2>
+            </div>
+
+            <div class="meru-grid">
+                <div class="meru-text">
+                    <p class="meru-lead">
+                        Meru no está agregando IA: está usando IA como <strong>infraestructura de negocio</strong>.
+                        Esa diferencia es la mía también. No vengo a montar una demo bonita —
+                        vengo a meter IA en el día a día de operaciones, soporte, RRHH y ventas.
+                    </p>
+
+                    <h3>30 días — Detectar y mapear</h3>
+                    <ul class="meru-list">
+                        <li>Shadow a equipos de ops, support y RRHH. Identificar los 10 procesos manuales más dolorosos.</li>
+                        <li>Auditar herramientas actuales (Make / n8n / Zapier) y ver dónde la IA puede colapsar pasos.</li>
+                        <li>Setear infra base: Bedrock, observabilidad, eval framework, capa de prompt management.</li>
+                    </ul>
+
+                    <h3>60 días — Primer producto interno</h3>
+                    <ul class="meru-list">
+                        <li>Bot interno de soporte sobre WhatsApp / Slack: deflexión de Tier-1 con RAG sobre KB de Meru.</li>
+                        <li>Automatización de conciliación on-chain ↔ off-chain con LLM extrayendo de hashes y memos.</li>
+                        <li>Métricas claras: tickets deflectados, tiempo ahorrado, costo por interacción.</li>
+                    </ul>
+
+                    <h3>90 días — Escalar y abrir camino</h3>
+                    <ul class="meru-list">
+                        <li>Plataforma interna de "AI tools" reusables: cualquier área puede instanciar un agente.</li>
+                        <li>Pipeline de evals continuos: cada cambio se valida contra casos dorados de cada producto.</li>
+                        <li>Documentar la "Meru AI playbook" para que el siguiente AI Engineer no parta de cero.</li>
+                    </ul>
+                </div>
+
+                <div class="meru-side">
+                    <div class="meru-card">
+                        <span class="meru-card-label">Filosofía</span>
+                        <p>"Si el bot no se usa, no existe. Mido todo por <strong>adopción</strong>, no por accuracy en benchmarks."</p>
+                    </div>
+                    <div class="meru-card">
+                        <span class="meru-card-label">Sobre el ownership</span>
+                        <p>No espero el ticket. Si detecto un proceso manual de 4 horas/día, lo automatizo y lo presento andando.</p>
+                    </div>
+                    <div class="meru-card">
+                        <span class="meru-card-label">Sobre el stack de Meru</span>
+                        <p>Stablecoins + IA = la combinación más interesante de fintech ahora mismo. Quiero estar acá.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="contact-box">
+                <div class="section-header centered">
+                    <span class="section-tag">06 / contacto</span>
+                    <h2>¿Hablamos?</h2>
+                    <p class="section-sub">Mandame un mensaje. Lo procesa una Lambda con SES y me llega al mail. También podés escribirme directo.</p>
+                </div>
+
+                <form class="contact-form" id="contact-form">
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="name">Nombre</label>
+                            <input type="text" id="name" name="name" required placeholder="Tu nombre">
+                        </div>
+                        <div class="form-field">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <label for="company">Empresa</label>
+                        <input type="text" id="company" name="company" placeholder="Meru, por ejemplo ;)">
+                    </div>
+                    <div class="form-field">
+                        <label for="message">Mensaje</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Contame en qué estás pensando..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary form-submit">
+                        Enviar mensaje
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="form-status" id="form-status"></div>
+                </form>
+
+                <div class="contact-links">
+                    <a href="mailto:adrian@example.com" class="contact-link">
+                        <span class="contact-icon">@</span>
+                        <span>adrian@example.com</span>
+                    </a>
+                    <a href="https://github.com/" target="_blank" rel="noopener" class="contact-link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.31-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.41 1.02.01 2.04.14 3 .41 2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.87.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.79 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                        <span>github.com/adrian</span>
+                    </a>
+                    <a href="https://linkedin.com/" target="_blank" rel="noopener" class="contact-link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.36 4.26 5.43v6.31zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.77 24h20.45c.97 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+                        <span>linkedin.com/in/adrian</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-left">
+                <span class="footer-logo">[adrian.ai]</span>
+                <p>Construido en {{año}} con AWS Bedrock, Lambda, CDK y café.</p>
+            </div>
+            <div class="footer-right">
+                <span class="footer-status">
+                    <span class="status-dot"></span>
+                    Todos los demos: operativos
+                </span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat widget -->
+    <div class="chat-widget" id="chat-widget">
+        <div class="chat-overlay" id="chat-overlay"></div>
+        <div class="chat-panel">
+            <header class="chat-header">
+                <div class="chat-header-info">
+                    <div class="chat-avatar">
+                        <svg viewBox="0 0 24 24" fill="none" width="22" height="22">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="2"/>
+                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="chat-title">Agente · Adrian</div>
+                        <div class="chat-sub"><span class="status-dot"></span> Claude 3.5 vía Bedrock · RAG activo</div>
+                    </div>
+                </div>
+                <button class="chat-close" id="chat-close" aria-label="Cerrar">×</button>
+            </header>
+
+            <div class="chat-messages" id="chat-messages">
+                <div class="chat-msg bot">
+                    <div class="msg-bubble">
+                        ¡Hey! Soy el agente de Adrian. Tengo contexto sobre su experiencia,
+                        su forma de trabajar y conocimiento general sobre stablecoins, RAG y arquitecturas serverless.
+                        <br><br>
+                        Preguntame lo que quieras. Algunas ideas:
+                    </div>
+                    <div class="msg-suggestions">
+                        <button class="suggestion">¿Por qué Adrian para Meru?</button>
+                        <button class="suggestion">¿Qué experiencia tiene con LLMs?</button>
+                        <button class="suggestion">¿Cómo funciona este portafolio por dentro?</button>
+                        <button class="suggestion">Construí un bot de soporte con RAG paso a paso</button>
+                    </div>
+                </div>
+            </div>
+
+            <form class="chat-input-row" id="chat-form">
+                <input
+                    type="text"
+                    id="chat-input"
+                    placeholder="Escribí tu pregunta..."
+                    autocomplete="off"
+                />
+                <button type="submit" class="chat-send" aria-label="Enviar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </form>
+            <div class="chat-footer">
+                <span>API: <code>POST /chat</code> · Modelo: <code>claude-3-5-sonnet</code> · RAG: <code>s3+numpy (in-RAM)</code></span>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/chat.js"></script>
+</body>
+</html>

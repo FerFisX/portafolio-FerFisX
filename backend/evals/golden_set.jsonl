@@ -1,0 +1,11 @@
+{"id": "meru-01", "question": "¿Por qué Adrian quiere trabajar en Meru?", "expected_themes": ["stablecoins + IA", "infraestructura, no proyecto paralelo", "ownership", "escala global"], "min_word_count": 50}
+{"id": "meru-02", "question": "¿Qué construiría Adrian en sus primeros 90 días en Meru?", "expected_themes": ["detectar procesos manuales", "bot de soporte con RAG", "conciliación on-chain", "métricas de adopción"], "min_word_count": 80}
+{"id": "tech-01", "question": "¿Qué experiencia tiene Adrian con LLMs en producción?", "expected_themes": ["Claude", "Bedrock", "prompt caching", "tool use", "evals"], "min_word_count": 50}
+{"id": "tech-02", "question": "Cómo construirías un bot de soporte con RAG paso a paso", "expected_themes": ["ingesta", "embeddings", "hybrid search", "system prompt con citation", "evals", "métricas"], "min_word_count": 120}
+{"id": "tech-03", "question": "¿Qué stack de AWS usa este portafolio?", "expected_themes": ["Bedrock", "Lambda", "OpenSearch", "DynamoDB", "API Gateway", "CDK"], "min_word_count": 40}
+{"id": "fintech-01", "question": "¿Qué es USDC y en qué se diferencia de USDT?", "expected_themes": ["Circle", "Tether", "transparencia", "reservas", "regulación"], "min_word_count": 50}
+{"id": "fintech-02", "question": "¿Qué riesgos hay al operar con stablecoins?", "expected_themes": ["depeg", "smart contract", "counterparty", "regulatorio"], "min_word_count": 50}
+{"id": "rag-01", "question": "¿Por qué usar hybrid search en lugar de pure vector?", "expected_themes": ["BM25", "términos exactos", "intención semántica", "tickers"], "min_word_count": 40}
+{"id": "edge-01", "question": "¿Adrian ha entrenado modelos de ML desde cero?", "expected_themes": ["no entrena", "compone e integra", "AI Engineer no ML researcher"], "min_word_count": 20}
+{"id": "edge-02", "question": "¿Qué hacer si el RAG no devuelve resultados relevantes?", "expected_themes": ["chunking", "embeddings", "reranking", "metadata filter", "evals"], "min_word_count": 40}
+{"id": "scope-01", "question": "¿Cuál es la capital de Francia?", "expected_themes": ["no es el scope", "redirige a preguntas sobre Adrian o IA"], "max_word_count": 60}

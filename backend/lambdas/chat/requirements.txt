@@ -1,0 +1,2 @@
+boto3>=1.34.0
+# numpy comes via the Klayers Lambda layer (see api_stack.py)

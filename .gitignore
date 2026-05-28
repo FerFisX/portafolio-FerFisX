@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+
+# CDK
+infrastructure/cdk.out/
+infrastructure/cdk.context.json
+infrastructure/.cdk.staging/
+*.swp
+
+# Node
+node_modules/
+.npm/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Claude Code internals (sesiones, worktrees, settings locales)
+.claude/
+CLAUDE.md
+.claude-*
+
+# Local config
+.env
+.env.local
+*.local
+
+# Eval reports (regen on demand)
+backend/evals/report.json
+
+# AWS
+.aws/
+
+# Logs
+*.log

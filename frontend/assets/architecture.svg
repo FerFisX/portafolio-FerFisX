@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 580" font-family="Inter, sans-serif">
+  <defs>
+    <linearGradient id="gA" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="gB" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#a855f7" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#00d4ff" stop-opacity="0.4"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#00d4ff"/>
+    </marker>
+    <marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#a855f7"/>
+    </marker>
+  </defs>
+
+  <!-- bg -->
+  <rect width="900" height="580" fill="#0a0e1f" rx="16"/>
+  <rect width="900" height="580" fill="url(#gB)" opacity="0.05" rx="16"/>
+
+  <!-- title -->
+  <text x="40" y="38" fill="#e6ecff" font-size="18" font-weight="700">Adrian.AI · Arquitectura</text>
+  <text x="40" y="58" fill="#6c7596" font-size="12" font-family="JetBrains Mono, monospace">region: us-east-1 · IaC: AWS CDK (Python) · pricing: pay-per-use</text>
+
+  <!-- user -->
+  <g transform="translate(40, 110)">
+    <rect width="120" height="60" rx="10" fill="#161c33" stroke="#00d4ff" stroke-width="1.5"/>
+    <text x="60" y="30" text-anchor="middle" fill="#e6ecff" font-size="13" font-weight="600">Usuario</text>
+    <text x="60" y="48" text-anchor="middle" fill="#6c7596" font-size="10" font-family="JetBrains Mono, monospace">browser</text>
+  </g>
+
+  <!-- CloudFront -->
+  <g transform="translate(220, 100)">
+    <rect width="140" height="80" rx="10" fill="#161c33" stroke="#a855f7" stroke-width="1.5"/>
+    <text x="70" y="26" text-anchor="middle" fill="#a855f7" font-size="10" font-family="JetBrains Mono, monospace">EDGE</text>
+    <text x="70" y="46" text-anchor="middle" fill="#e6ecff" font-size="13" font-weight="600">CloudFront</text>
+    <text x="70" y="62" text-anchor="middle" fill="#6c7596" font-size="10">+ WAF + Route 53</text>
+  </g>
+
+  <!-- S3 static -->
+  <g transform="translate(220, 220)">
+    <rect width="140" height="70" rx="10" fill="#161c33" stroke="#4ade80" stroke-width="1.5"/>
+    <text x="70" y="24" text-anchor="middle" fill="#4ade80" font-size="10" font-family="JetBrains Mono, monospace">FRONTEND</text>
+    <text x="70" y="42" text-anchor="middle" fill="#e6ecff" font-size="13" font-weight="600">S3 (static)</text>
+    <text x="70" y="58" text-anchor="middle" fill="#6c7596" font-size="10">HTML · CSS · JS</text>
+  </g>
+
+  <!-- API Gateway -->
+  <g transform="translate(420, 100)">
+    <rect width="140" height="80" rx="10" fill="#161c33" stroke="#00d4ff" stroke-width="1.5"/>
+    <text x="70" y="26" text-anchor="middle" fill="#00d4ff" font-size="10" font-family="JetBrains Mono, monospace">API</text>
+    <text x="70" y="46" text-anchor="middle" fill="#e6ecff" font-size="13" font-weight="600">API Gateway</text>
+    <text x="70" y="62" text-anchor="middle" fill="#6c7596" font-size="10">HTTP · CORS · JWT</text>
+  </g>
+
+  <!-- Lambda router -->
+  <g transform="translate(420, 220)">
+    <rect width="140" height="80" rx="10" fill="#161c33" stroke="#fb923c" stroke-width="1.5"/>
+    <text x="70" y="26" text-anchor="middle" fill="#fb923c" font-size="10" font-family="JetBrains Mono, monospace">COMPUTE</text>
+    <text x="70" y="46" text-anchor="middle" fill="#e6ecff" font-size="13" font-weight="600">Lambda (Py 3.12)</text>
+    <text x="70" y="62" text-anchor="middle" fill="#6c7596" font-size="10">chat · rag · agent</text>
+  </g>
+
+  <!-- Bedrock -->
+  <g transform="translate(620, 100)">
+    <rect width="160" height="80" rx="10" fill="#161c33" stroke="#a855f7" stroke-width="2" filter="url(#glow)"/>
+    <text x="80" y="26" text-anchor="middle" fill="#a855f7" font-size="10" font-family="JetBrains Mono, monospace">AI / ML</text>
+    <text x="80" y="46" text-anchor="middle" fill="#e6ecff" font-size="13" font-weight="600">AWS Bedrock</text>
+    <text x="80" y="62" text-anchor="middle" fill="#6c7596" font-size="10">Claude 3.5 Sonnet</text>
+  </g>
+
+  <!-- OpenSearch -->
+  <g transform="translate(620, 220)">
+    <rect width="160" height="80" rx="10" fill="#161c33" stroke="#f472b6" stroke-width="1.5"/>
+    <text x="80" y="26" text-anchor="middle" fill="#f472b6" font-size="10" font-family="JetBrains Mono, monospace">VECTORS</text>
+    <text x="80" y="46" text-anchor="middle" fill="#e6ecff" font-size="13" font-weight="600">S3 + numpy (in-Lambda)</text>
+    <text x="80" y="62" text-anchor="middle" fill="#6c7596" font-size="10">Titan embeddings · RAG</text>
+  </g>
+
+  <!-- DynamoDB -->
+  <g transform="translate(420, 340)">
+    <rect width="140" height="70" rx="10" fill="#161c33" stroke="#00d4ff" stroke-width="1.5"/>
+    <text x="70" y="24" text-anchor="middle" fill="#00d4ff" font-size="10" font-family="JetBrains Mono, monospace">STATE</text>
+    <text x="70" y="42" text-anchor="middle" fill="#e6ecff" font-size="13" font-weight="600">DynamoDB</text>
+    <text x="70" y="58" text-anchor="middle" fill="#6c7596" font-size="10">sessions · history</text>
+  </g>
+
+  <!-- S3 KB docs -->
+  <g transform="translate(620, 340)">
+    <rect width="160" height="70" rx="10" fill="#161c33" stroke="#4ade80" stroke-width="1.5"/>
+    <text x="80" y="24" text-anchor="middle" fill="#4ade80" font-size="10" font-family="JetBrains Mono, monospace">STORAGE</text>
+    <text x="80" y="42" text-anchor="middle" fill="#e6ecff" font-size="13" font-weight="600">S3 (KB docs)</text>
+    <text x="80" y="58" text-anchor="middle" fill="#6c7596" font-size="10">profile · stablecoins</text>
+  </g>
+
+  <!-- Step Functions -->
+  <g transform="translate(40, 340)">
+    <rect width="160" height="70" rx="10" fill="#161c33" stroke="#fb923c" stroke-width="1.5"/>
+    <text x="80" y="24" text-anchor="middle" fill="#fb923c" font-size="10" font-family="JetBrains Mono, monospace">WORKFLOW</text>
+    <text x="80" y="42" text-anchor="middle" fill="#e6ecff" font-size="13" font-weight="600">Step Functions</text>
+    <text x="80" y="58" text-anchor="middle" fill="#6c7596" font-size="10">+ EventBridge</text>
+  </g>
+
+  <!-- SES -->
+  <g transform="translate(220, 340)">
+    <rect width="140" height="70" rx="10" fill="#161c33" stroke="#f472b6" stroke-width="1.5"/>
+    <text x="70" y="24" text-anchor="middle" fill="#f472b6" font-size="10" font-family="JetBrains Mono, monospace">EMAIL</text>
+    <text x="70" y="42" text-anchor="middle" fill="#e6ecff" font-size="13" font-weight="600">SES</text>
+    <text x="70" y="58" text-anchor="middle" fill="#6c7596" font-size="10">contact form</text>
+  </g>
+
+  <!-- CloudWatch & X-Ray -->
+  <g transform="translate(40, 460)">
+    <rect width="820" height="70" rx="10" fill="#0f1428" stroke="#6c7596" stroke-width="1" stroke-dasharray="4 4"/>
+    <text x="20" y="24" fill="#6c7596" font-size="10" font-family="JetBrains Mono, monospace">OBSERVABILITY (cross-cutting)</text>
+    <text x="20" y="48" fill="#e6ecff" font-size="13" font-weight="600">CloudWatch Logs · X-Ray Traces · Custom Metrics (tokens, latency, cost, eval-score)</text>
+  </g>
+
+  <!-- Arrows -->
+  <!-- user -> cloudfront -->
+  <line x1="160" y1="140" x2="220" y2="140" stroke="#00d4ff" stroke-width="2" marker-end="url(#arr)"/>
+  <!-- cloudfront -> s3 -->
+  <line x1="290" y1="180" x2="290" y2="220" stroke="#00d4ff" stroke-width="2" marker-end="url(#arr)"/>
+  <!-- cloudfront -> api -->
+  <line x1="360" y1="140" x2="420" y2="140" stroke="#00d4ff" stroke-width="2" marker-end="url(#arr)"/>
+  <!-- api -> lambda -->
+  <line x1="490" y1="180" x2="490" y2="220" stroke="#00d4ff" stroke-width="2" marker-end="url(#arr)"/>
+  <!-- lambda -> bedrock -->
+  <line x1="560" y1="240" x2="620" y2="140" stroke="#a855f7" stroke-width="2" marker-end="url(#arr2)"/>
+  <!-- lambda -> opensearch -->
+  <line x1="560" y1="260" x2="620" y2="260" stroke="#a855f7" stroke-width="2" marker-end="url(#arr2)"/>
+  <!-- lambda -> dynamodb -->
+  <line x1="490" y1="300" x2="490" y2="340" stroke="#a855f7" stroke-width="2" marker-end="url(#arr2)"/>
+  <!-- opensearch -> s3 kb -->
+  <line x1="700" y1="300" x2="700" y2="340" stroke="#a855f7" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arr2)"/>
+  <!-- step functions -> lambda -->
+  <line x1="200" y1="370" x2="420" y2="370" stroke="#fb923c" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arr)"/>
+  <!-- lambda -> ses -->
+  <line x1="420" y1="370" x2="360" y2="370" stroke="#f472b6" stroke-width="2" marker-end="url(#arr2)"/>
+
+  <!-- Legend -->
+  <g transform="translate(40, 555)">
+    <text x="0" y="0" fill="#6c7596" font-size="10" font-family="JetBrains Mono, monospace">
+      → request flow   ⤳ side effect / async   |   prompt-caching enabled on Bedrock   |   IAM least-privilege per λ
+    </text>
+  </g>
+</svg>
