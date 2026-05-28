@@ -68,40 +68,13 @@ Soy AI Engineer enfocado en **llevar IA a producción real**, no en construir no
 - **LangChain / LangGraph** cuando aporta (no por defecto — muchas veces 50 líneas de Python ganan).
 - **Bedrock Agents** y **Bedrock Knowledge Bases** para casos donde la abstracción de AWS conviene.
 
-## Por qué Meru
-
-- Meru construye sobre **stablecoins + IA**: la intersección más interesante de fintech ahora mismo.
-- El rol está enmarcado como "infraestructura de IA, no proyecto paralelo" — eso es exactamente cómo pienso.
-- Latitud para detectar oportunidades sin esperar tickets — mi modo natural.
-- Equipo global, operaciones en +150 países, +1M de descargas — escala que obliga a hacer las cosas bien desde el inicio.
-
-## Primeros 90 días en Meru — plan
-
-### Día 1-30: Detectar y mapear
-- Shadow a ops, support, RRHH, ventas. Identificar los 10 procesos manuales más dolorosos.
-- Auditar herramientas actuales (Make / n8n / Zapier). Mapear qué pasos puede colapsar IA.
-- Setear infra base: Bedrock + observabilidad + eval framework + prompt management layer.
-
-### Día 31-60: Primer producto interno
-- Bot interno de soporte sobre WhatsApp o Slack: deflexión Tier-1 con RAG sobre KB de Meru.
-- Automatización de conciliación on-chain ↔ off-chain: LLM extrayendo de hashes, memos, comprobantes.
-- Métricas claras desde el día 1: tickets deflectados, tiempo ahorrado, costo por interacción, NPS interno.
-
-### Día 61-90: Escalar y abrir camino
-- Plataforma interna de "AI tools" reusables: cualquier área puede instanciar un agente sin AI Engineer en el medio.
-- Pipeline de evals continuos: cada cambio se valida contra casos dorados de cada producto.
-- Documentar la "Meru AI playbook" para que el próximo AI Engineer (o yo mismo en 6 meses) no parta de cero.
-
-## Lo que NO soy
-- No soy data scientist clásico — no me obsesiona el último paper de arxiv ni los benchmarks académicos.
-- No soy ML engineer de modelos custom — no entreno modelos desde cero, los compongo y los integro.
-- No soy un perfil "demo only" — me importa el código que se mantiene, los costos que escalan, la operación que aguanta.
 
 ## Contacto y stack disponible
 
-- **Disponibilidad**: full-time, modo remoto / LATAM.
+- **Disponibilidad**: full-time, modo remoto / hibrido.
 - **AWS account**: con créditos para experimentar e iterar libremente.
 - **GitHub**: repos públicos con ejemplos de prompts, eval frameworks, agentes.
+- **LinkedIn**: https://www.linkedin.com/in/adrian-fernando-acarapi-roca-a543a0270/
 
 ## Filosofía corta
 
